@@ -271,6 +271,7 @@ html, body {
   }
 
   .lang-selector {
+    display: none;
     position: fixed;
     z-index: 50;
     border-bottom: 5px solid $lang-select-active-bg;
