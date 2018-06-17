@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>GameRuncher API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -198,10 +198,10 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+      <script src="javascripts/all_nosearch.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -212,290 +212,454 @@
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#gameruncher-api" class="toc-h1 toc-link" data-title="gameruncher-api">GameRuncher API 소개</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#api" class="toc-h1 toc-link" data-title="api">API 목록</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#e225a6fd75" class="toc-h2 toc-link" data-title="">로그인</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#f9943dbd87" class="toc-h2 toc-link" data-title="">아이디 중복 확인</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#e7a148c242" class="toc-h2 toc-link" data-title="">닉네임 중복 확인</a>
+                  </li>
+                  <li>
+                    <a href="#6f74dc4b8c" class="toc-h2 toc-link" data-title="">휴대폰번호 중복 확인</a>
+                  </li>
+                  <li>
+                    <a href="#a41c324eb8" class="toc-h2 toc-link" data-title="">힙한 회원가입 ! (둠칫)</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#http" class="toc-h1 toc-link" data-title="http">HTTP 응답 코드</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-response-code" class="toc-h2 toc-link" data-title="http-response-code">HTTP RESPONSE CODE</a>
+                  </li>
+              </ul>
           </li>
       </div>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id='gameruncher-api'>GameRuncher API 소개</h1>
+<p>GameRuncher를 통한 클라이언트와 서버가 통신하기 위한 API입니다. </p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+<p>개발 중 질문사항이 있으시면 Discord 이승준#1926으로 연락주세요.</p>
+<h1 id='api'>API 목록</h1><h2 id='e225a6fd75'>로그인</h2>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>Example Request</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gameruncher.com/v1/auth/login"</span>
+  -H <span class="s2">"content-Type: application/json"</span>
+  -d <span class="s1">'{
+      "email":"hi_im_groot@example.com",
+      "password":"passwd123!",
+      "UUID":"FFFF-FFFF-FFFF-FFFF (UUID 형식을 몰라서 대충 채워넣었습니다)",
+      }'</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>Example Response</p>
 </blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"아이디와 비밀번호를 확인해주세요."</span><span class="p">,</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p>입력받은 회원 정보를 기반으로 로그인을 시도합니다.</p>
+
+<p>최초 로그인 시 UUID를 함께 보내면 회원정보에 UUID를 등록합니다.</p>
+
+<p>앱 실행시에 UUID 확인 API로 true가 반환되면 자동으로 로그인을 시도해주세요.</p>
+
+<aside class="notice">만약 다른 휴대폰에서 같은 아이디로 로그인에 성공 한다면 UUID가 덮어쓰기 처리됩니다.</aside>
+<h3 id='endpoint'>ENDPOINT</h3>
+<p><code>POST https://gameruncher.com/v1/auth/login</code></p>
+<h3 id='parameters'>PARAMETERS</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Default</th>
+<th>DataType</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>email</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>Email 4~32자 소문자,대문자,숫자,@,.</td>
+<td>회원 이메일</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>password</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>String 4~32자</td>
+<td>회원 비밀번호</td>
+</tr>
+<tr>
+<td>uuid</td>
+<td>필수아님</td>
+<td>-</td>
+<td>기기 고유번호</td>
+</tr>
+</tbody></table>
+<h3 id='response'>RESPONSE</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>응답코드 <span style="color:#2cc200"><strong>0 성공</strong></span> <span style="color:#c25300"><strong>-1 실패</strong></span></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>응답이 성공이 아닌 경우 설명 메세지</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
+<!-- <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
+</aside> -->
+<h2 id='f9943dbd87'>아이디 중복 확인</h2>
+<blockquote>
+<p>Example Request</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gameruncher.com/v1/auth/duplicateIdentityCheck"</span>
+  -H <span class="s2">"content-Type: application/json"</span>
+  -d <span class="s1">'{
+      "email":"hi_im_groot@naver.com",
+      }'</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"이미 가입된 이메일입니다."</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>입력받은 이메일이 이미 존재하는 이메일인지 확인힙니다.</p>
+<h3 id='endpoint-2'>ENDPOINT</h3>
+<p><code>POST https://gameruncher.com/v1/auth/duplicateIdentityCheck</code></p>
+<h3 id='parameters-2'>PARAMETERS</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>DataType</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>Email 4~32자 소문자,대문자,숫자,@,.</td>
+<td>회원 이메일</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>RESPONSE</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>응답코드 <span style="color:#2cc200"><strong>0 성공</strong></span> <span style="color:#c25300"><strong>-1 실패</strong></span></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>응답이 성공이 아닌 경우 설명 메세지</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+올바른 이메일 형식인지 여부의 에러도 출력함 code가 0이 아니면 msg내용을 그대로 출력
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<h2 id='e7a148c242'>닉네임 중복 확인</h2>
+<blockquote>
+<p>Example Request</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gameruncher.com/v1/auth/duplicateNicknameCheck"</span>
+  -H <span class="s2">"content-Type: application/json"</span>
+  -d <span class="s1">'{
+      "nickanme":"아임그루트",
+      }'</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Example Response</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"이미 존재하는 닉네임입니다."</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p>입력받은 닉네임 이미 존재하는 닉네임인지 확인힙니다.</p>
+<h3 id='endpoint-3'>ENDPOINT</h3>
+<p><code>POST https://gameruncher.com/v1/auth/duplicateNicknameCheck</code></p>
+<h3 id='parameters-3'>PARAMETERS</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Default</th>
+<th>DataType</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>nickname</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>2~16자 한글,영어,숫자</td>
+<td>회원 닉네임</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<h3 id='response-3'>RESPONSE</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>code</td>
+<td>응답코드 <span style="color:#2cc200"><strong>0 성공</strong></span> <span style="color:#c25300"><strong>-1 실패</strong></span></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>응답이 성공이 아닌 경우 설명 메세지</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
 
-<p>The Kittn API uses the following error codes:</p>
-
+<aside class="notice">
+올바른 닉네임 형식인지 여부의 에러도 출력함 code가 0이 아니면 msg내용을 그대로 출력
+</aside>
+<h2 id='6f74dc4b8c'>휴대폰번호 중복 확인</h2>
+<blockquote>
+<p>Example Request</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gameruncher.com/v1/auth/duplicatePhoneCheck"</span>
+  -H <span class="s2">"content-Type: application/json"</span>
+  -d <span class="s1">'{
+      "phone":"010-0000-0000",
+      }'</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"이미 가입된 휴대폰 번호입니다."</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>입력받은 휴대폰 번호가 이미 존재하는 휴대폰 번호인지 확인힙니다.</p>
+<h3 id='endpoint-4'>ENDPOINT</h3>
+<p><code>POST https://gameruncher.com/v1/auth/duplicatePhoneCheck</code></p>
+<h3 id='parameters-4'>PARAMETERS</h3>
 <table><thead>
 <tr>
-<th>Error Code</th>
+<th>Parameter</th>
+<th>Default</th>
+<th>DataType</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>phone</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>13자 xxx-xxxx-xxxx</td>
+<td>회원 휴대폰 번호</td>
+</tr>
+</tbody></table>
+<h3 id='response-4'>RESPONSE</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>응답코드 <span style="color:#2cc200"><strong>0 성공</strong></span> <span style="color:#c25300"><strong>-1 실패</strong></span></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>응답이 성공이 아닌 경우 설명 메세지</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+올바른 휴대폰 번호인지 여부의 에러도 출력함 code가 0이 아니면 msg내용을 그대로 출력
+</aside>
+<h2 id='a41c324eb8'>힙한 회원가입 ! (둠칫)</h2>
+<blockquote>
+<p>Example Request</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gameruncher.com/v1/auth/join"</span>
+  -H <span class="s2">"content-Type: application/json"</span>
+  -d <span class="s1">'{
+      "email":"hi_im_groot",
+      "password":"wedidit!",
+      "nickname":"우리는해낼것이다",
+      "name":"김이박",
+      "sex":0,
+      "birth":"1997-11-26",
+      "phone":"010-0000-0000",
+      }'</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w"> </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"아이디를 입력해주세요."</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"password"</span><span class="p">,</span><span class="w"> </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"비밀번호를 입력해주세요."</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"sex"</span><span class="p">,</span><span class="w"> </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"성별을 선택해주세요."</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><del>드디어</del> 입력받은 회원정보들로 회원가입을 시도합니다.</p>
+
+<p>이전 단계에서도 검증을 거치지만 최종적으로 모든 입력값에 대한 검증을 한번 더 한 다음 각각의 입력값에 대한 검증(에러)값이 리턴됩니다.</p>
+
+<p>해당 단계에서는 여러 에러가 동시에 발생할 수 있기에 전의 입력 페이지로 넘어갈지 등의 여부는 논의해보는게 좋을 것 같습니다.</p>
+
+<aside class="warning">
+아직 확정된 API가 아닙니다.
+</aside>
+<h3 id='endpoint-5'>ENDPOINT</h3>
+<p><code>POST https://gameruncher.com/v1/auth/duplicatePhoneCheck</code></p>
+<h3 id='parameters-5'>PARAMETERS</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>DataType</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>Email 4~32자 소문자,대문자,숫자,@,.</td>
+<td>회원 이메일</td>
+</tr>
+<tr>
+<td>password</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>String 4~32자</td>
+<td>회원 비밀번호</td>
+</tr>
+<tr>
+<td>nickname</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>2~16자 한글,영어,숫자</td>
+<td>회원 닉네임</td>
+</tr>
+<tr>
+<td>name</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>2~16자 한글</td>
+<td>회원 이름</td>
+</tr>
+<tr>
+<td>sex</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>0 남자 1 여자</td>
+<td>회원 성별</td>
+</tr>
+<tr>
+<td>birth</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td><span style="color:#c25300"><strong>확정되지않음</strong></span></td>
+<td>회원 생년월일</td>
+</tr>
+<tr>
+<td>phone</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>13자 xxx-xxxx-xxxx</td>
+<td>회원 휴대폰 번호</td>
+</tr>
+</tbody></table>
+<h3 id='response-5'>RESPONSE</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>응답코드 <span style="color:#2cc200"><strong>0 성공</strong></span> <span style="color:#c25300"><strong>-1 실패</strong></span></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>응답이 성공이 아닌 경우 설명 메세지 ( 여러 입력값에 대해 묶음으로 리턴됩니다. example response 참조 )</td>
+</tr>
+</tbody></table>
+<h1 id='http'>HTTP 응답 코드</h1><h3 id='http-response-code'>HTTP RESPONSE CODE</h3>
+<table><thead>
+<tr>
+<th>Code</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
 <tr>
+<td>200</td>
+<td>OK : 정상</td>
+</tr>
+<tr>
 <td>400</td>
-<td>Bad Request -- Your request sucks.</td>
+<td>Bad Request -- Your request is invalid. ( 파라미터 오류 )</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>Unauthorized -- Your API key is wrong.  ( 인증 오류 - 로그인되지 않은 상태에서 로그인이 필요한 url 접근 시 발생 )</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>Not Found -- 존재하지 않는 요청 ( 페이지를 찾을 수 없음 )</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests -- throttle 제한 ( 짧은 시간 내에 너무 많은 요청을 보낼 시 발생 )</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>Internal Server Error -- 서버 오류</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>Service Unavailable -- 서버 오류</td>
 </tr>
 </tbody></table>
+
+<!-- 403 | Forbidden -- The kitten requested is hidden for administrators only. -->
+
+<!-- 405 | Method Not Allowed -- You tried to access a kitten with an invalid method. -->
+
+<!-- 406 | Not Acceptable -- You requested a format that isn't json. -->
+
+<!-- 410 | Gone -- The kitten requested has been removed from our servers. -->
+
+<!-- 418 | I'm a teapot. -->
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
