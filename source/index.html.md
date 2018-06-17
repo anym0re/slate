@@ -1,191 +1,167 @@
 ---
-title: API Reference
+title: GameRuncher API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
-
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  # - <a href='#'>Sign Up for a Developer Key</a>
+  # - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
 
-search: true
+search: false
 ---
 
-# Introduction
+# GameRuncher API 소개
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+GameRuncher를 통한 클라이언트와 서버가 통신하기 위한 API입니다. 
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+개발 중 질문사항이 있으시면 Discord 이승준#1926으로 연락주세요.
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# API 목록
 
-# Authentication
+## 로그인
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+> Example Request
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "https://gameruncher.com/v1/auth/login"
+  -H "content-Type: application/json"
+  -d '{
+      "email":"hi_im_groot@example.com",
+      "password":"passwd123!",
+      "UUID":"FFFF-FFFF-FFFF-FFFF (UUID 형식을 몰라서 대충 채워넣었습니다)",
+      }'
 ```
 
-```javascript
-const kittn = require('kittn');
+> Example Response
 
-let api = kittn.authorize('meowmeowmeow');
+```json
+  {
+    "code": -1,
+    "msg": "아이디와 비밀번호를 확인해주세요.",
+  }
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+입력받은 회원 정보를 기반으로 로그인을 시도합니다.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+최초 로그인 시 UUID를 함께 보내면 회원정보에 UUID를 등록합니다.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+앱 실행시에 UUID 확인 API로 true가 반환되면 자동으로 로그인을 시도해주세요.
 
-`Authorization: meowmeowmeow`
+<aside class="notice">만약 다른 휴대폰에서 같은 아이디로 로그인에 성공 한다면 UUID가 덮어쓰기 처리됩니다.</aside>
+
+### ENDPOINT
+
+`POST https://gameruncher.com/v1/auth/login`
+
+### PARAMETERS
+
+Parameter | Default | DataType | Description
+--------- | ------- | -------- | -----------
+email | <span style="color:#c25300">**필수**</span>| Email 4~32자 소문자,대문자,숫자,@,. | 회원 이메일
+password | <span style="color:#c25300">**필수**</span>| String 4~32자| 회원 비밀번호
+uuid | 필수아님 | - | 기기 고유번호
+
+### RESPONSE
+
+Code | Description
+--------- | -------
+code | 응답코드 <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
+msg | 응답이 성공이 아닌 경우 설명 메세지 
+
+<!-- <aside class="success">
+Remember — a happy kitten is an authenticated kitten!
+</aside> -->
+
+## 아이디 중복 확인
+
+> Example Request
+
+```shell
+curl "https://gameruncher.com/v1/auth/duplicateIdentityCheck"
+  -H "content-Type: application/json"
+  -d '{
+      "email":"hi_im_groot@naver.com",
+      }'
+```
+
+> Example Response
+
+```json
+  {
+    "code": -1,
+    "msg": "이미 가입된 이메일입니다.",
+  }
+```
+
+입력받은 이메일이 이미 존재하는 이메일인지 확인힙니다.
+
+### ENDPOINT
+
+`POST https://gameruncher.com/v1/auth/duplicateIdentityCheck`
+
+### PARAMETERS
+
+Parameter | Default | DataType | Description
+--------- | ------- | -------- | -----------
+email | <span style="color:#c25300">**필수**</span>| Email 4~32자 소문자,대문자,숫자,@,. | 회원 이메일
+
+### RESPONSE
+
+Code | Description
+--------- | -------
+code | 응답코드 <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
+msg | 응답이 성공이 아닌 경우 설명 메세지 
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+올바른 이메일 형식인지 여부의 에러도 출력함 code가 0이 아니면 msg내용을 그대로 출력
 </aside>
 
-# Kittens
+## 닉네임 중복 확인
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+> Example Request
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "https://gameruncher.com/v1/auth/duplicateNicknameCheck"
+  -H "content-Type: application/json"
+  -d '{
+      "nickanme":"아임그루트",
+      }'
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> Example Response
 
 ```json
-[
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "code": -1,
+    "msg": "이미 존재하는 닉네임입니다.",
   }
-]
 ```
 
-This endpoint retrieves all kittens.
+입력받은 닉네임 이미 존재하는 닉네임인지 확인힙니다.
 
-### HTTP Request
+### ENDPOINT
 
-`GET http://example.com/api/kittens`
+`POST https://gameruncher.com/v1/auth/duplicateNicknameCheck`
 
-### Query Parameters
+### PARAMETERS
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Default | DataType | Description
+--------- | ------- | -------- | -----------
+nickname | <span style="color:#c25300">**필수**</span>| 2~16자 한글,영어,숫자 | 회원 닉네임
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+### RESPONSE
+
+Code | Description
+--------- | -------
+code | 응답코드 <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
+msg | 응답이 성공이 아닌 경우 설명 메세지 
+
+<aside class="notice">
+올바른 닉네임 형식인지 여부의 에러도 출력함 code가 0이 아니면 msg내용을 그대로 출력
 </aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
 
 ## Delete a Specific Kitten
 
