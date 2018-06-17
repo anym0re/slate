@@ -253,7 +253,7 @@ curl "https://gameruncher.com/v1/auth/join"
 
 ### ENDPOINT
 
-`POST https://gameruncher.com/v1/auth/duplicatePhoneCheck`
+`POST https://gameruncher.com/v1/auth/join`
 
 ### PARAMETERS
 
