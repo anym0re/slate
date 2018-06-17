@@ -1,22 +1,21 @@
-# Errors
+# HTTP 응답 코드 
 
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-The Kittn API uses the following error codes:
+### HTTP RESPONSE CODE
 
 
-Error Code | Meaning
+Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The kitten requested is hidden for administrators only.
-404 | Not Found -- The specified kitten could not be found.
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The kitten requested has been removed from our servers.
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+200 | OK : 정상
+400 | Bad Request -- Your request is invalid. ( 파라미터 오류 )
+401 | Unauthorized -- Your API key is wrong.  ( 인증 오류 - 로그인되지 않은 상태에서 로그인이 필요한 url 접근 시 발생 )
+404 | Not Found -- 존재하지 않는 요청 ( 페이지를 찾을 수 없음 )
+429 | Too Many Requests -- throttle 제한 ( 짧은 시간 내에 너무 많은 요청을 보낼 시 발생 )
+500 | Internal Server Error -- 서버 오류
+503 | Service Unavailable -- 서버 오류
+
+
+<!-- 403 | Forbidden -- The kitten requested is hidden for administrators only. -->
+<!-- 405 | Method Not Allowed -- You tried to access a kitten with an invalid method. -->
+<!-- 406 | Not Acceptable -- You requested a format that isn't json. -->
+<!-- 410 | Gone -- The kitten requested has been removed from our servers. -->
+<!-- 418 | I'm a teapot. -->
