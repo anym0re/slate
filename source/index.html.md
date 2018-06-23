@@ -219,7 +219,7 @@ curl "https://gameruncher.com/v1/auth/join"
       "password":"wedidit!",
       "nickname":"우리는해낼것이다",
       "name":"김이박",
-      "sex":0,
+      "gender":0,
       "birth":"1997-11-26",
       "phone":"010-0000-0000",
       }'
@@ -233,7 +233,7 @@ curl "https://gameruncher.com/v1/auth/join"
     "msg": [
         { "name":"email", "msg":"아이디를 입력해주세요." },
         { "name":"password", "msg":"비밀번호를 입력해주세요."},
-        { "name":"sex", "msg":"성별을 선택해주세요." }
+        { "name":"gender", "msg":"성별을 선택해주세요." }
     ],
   }
 ```
@@ -249,8 +249,6 @@ curl "https://gameruncher.com/v1/auth/join"
 아직 확정된 API가 아닙니다.
 </aside>
 
-
-
 ### ENDPOINT
 
 `POST https://gameruncher.com/v1/auth/join`
@@ -263,9 +261,72 @@ email | <span style="color:#c25300">**필수**</span>| Email 4~32자 소문자,�
 password | <span style="color:#c25300">**필수**</span>| String 4~32자| 회원 비밀번호
 nickname | <span style="color:#c25300">**필수**</span>| 2~16자 한글,영어,숫자 | 회원 닉네임
 name | <span style="color:#c25300">**필수**</span>| 2~16자 한글 | 회원 이름
-sex | <span style="color:#c25300">**필수**</span>| 0 남자 1 여자 | 회원 성별
+gender | <span style="color:#c25300">**필수**</span>| 0 남자 1 여자 | 회원 성별
 birth | <span style="color:#c25300">**필수**</span>| <span style="color:#c25300">**확정되지않음**</span> | 회원 생년월일
 phone | <span style="color:#c25300">**필수**</span>| 13자 xxx-xxxx-xxxx | 회원 휴대폰 번호
+
+### RESPONSE
+
+Code | Description
+--------- | -------
+code | 응답코드 <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
+msg | 응답이 성공이 아닌 경우 설명 메세지 ( 여러 입력값에 대해 묶음으로 리턴됩니다. example response 참조 )
+
+## 테마 리스트 얻기
+
+> Example Request
+
+```shell
+curl -X GET \
+  'https://gameruncher.com/v1/theme' \
+  -H 'content-type: application/json'
+```
+
+> Example Response
+
+```json
+  {
+    "code": -1,
+    "msg": [
+        { "id":"1",
+          "thumbnail_img":"https://gameruncher.com/assets/thumbnail_img/money_bag_run_away.jpg",
+          "title":"돈가방을 갖고 튀어라!",
+          "description":"진짜 돈가방은 어디에",
+          "date":"2018-06-20",
+          "time":"11:00~13:00",
+          "level":"high",
+          "category":"로맨스|스릴러",
+          "tags":"청담동|키워드",
+        },
+        { "id":"2",
+          "thumbnail_img":"https://gameruncher.com/assets/thumbnail_img/money_bag_run_away.jpg",
+          "title":"돈가방을 갖고 튀어라!",
+          "description":"진짜 돈가방은 어디에",
+          "date":"2018-06-20",
+          "time":"11:00~13:00",
+          "level":"low",
+          "category":"로맨스|스릴러",
+          "tags":"청담동|키워드",
+        },
+        { "id":"3",
+          "thumbnail_img":"https://gameruncher.com/assets/thumbnail_img/money_bag_run_away.jpg",
+          "title":"돈가방을 갖고 튀어라!",
+          "description":"진짜 돈가방은 어디에",
+          "date":"2018-06-20",
+          "time":"11:00~13:00",
+          "level":"very high",
+          "category":"로맨스|스릴러",
+          "tags":"청담동|키워드",
+        }
+    ],
+  }
+```
+
+예약 앱 메인 페이지에 들어가는 리스트 정보를 받아옵니다.
+
+### ENDPOINT
+
+`GET https://gameruncher.com/v1/theme`
 
 ### RESPONSE
 
