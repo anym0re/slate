@@ -31,7 +31,7 @@ curl "https://gameruncher.com/v1/auth/login"
   -d '{
       "email":"hi_im_groot@example.com",
       "password":"passwd123!",
-      "UUID":"FFFF-FFFF-FFFF-FFFF (UUID 형식을 몰라서 대충 채워넣었습니다)",
+      "UUID":"00000000-2edc-3639-26ae-dd4a2a9258b2",
       }'
 ```
 
@@ -62,7 +62,7 @@ Parameter | Default | DataType | Description
 --------- | ------- | -------- | -----------
 email | <span style="color:#c25300">**필수**</span>| Email 4~32자 소문자,대문자,숫자,@,. | 회원 이메일
 password | <span style="color:#c25300">**필수**</span>| String 4~32자| 회원 비밀번호
-uuid | 필수아님 | - | 기기 고유번호
+uuid | 필수아님 | 36자 | 기기 고유번호
 
 ### RESPONSE
 
@@ -90,9 +90,13 @@ curl "https://gameruncher.com/v1/auth/duplicateIdentityCheck"
 > Example Response
 
 ```json
-  {
+ {
     "code": -1,
-    "msg": "이미 가입된 이메일입니다.",
+    "msg": {
+        "email": [
+            "이미 가입된 이메일입니다."
+        ]
+    }
   }
 ```
 
@@ -136,7 +140,11 @@ curl "https://gameruncher.com/v1/auth/duplicateNicknameCheck"
 ```json
   {
     "code": -1,
-    "msg": "이미 존재하는 닉네임입니다.",
+    "msg": {
+        "nickname": [
+            "이미 존재하는 닉네임입니다."
+        ]
+    }
   }
 ```
 
@@ -180,7 +188,11 @@ curl "https://gameruncher.com/v1/auth/duplicatePhoneCheck"
 ```json
   {
     "code": -1,
-    "msg": "이미 가입된 휴대폰 번호입니다.",
+    "msg": {
+        "phone": [
+            "이미 가입된 휴대폰 번호입니다."
+        ]
+    }
   }
 ```
 
