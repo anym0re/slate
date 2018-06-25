@@ -360,5 +360,5 @@ curl -X GET \
 Code | Description
 --------- | -------
 code | 응답코드 <span style="color:#2cc200">**1 캐시**</span> <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
-lists | 테마 리스트에 대한 정보를 제공합니다.
+lists | 테마 리스트에 대한 정보를 제공합니다. <span style="color:#c25300">**응답 코드가 1일때는 리턴하지 않습니다.**</span>
 hash | lists를 해쉬화한 값 입니다.
