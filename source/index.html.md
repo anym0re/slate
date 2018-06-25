@@ -290,7 +290,7 @@ msg | 응답이 성공이 아닌 경우 설명 메세지 ( 여러 입력값에 �
 
 ```shell
 curl -X GET \
-  'https://gameruncher.com/v1/theme/lists?hash=apple' \
+  'https://gameruncher.com/v1/theme/lists/{hash}' \
   -H 'content-type: application/json'
 ```
 
@@ -353,7 +353,7 @@ curl -X GET \
 
 ### ENDPOINT
 
-`GET https://gameruncher.com/v1/theme/lists`
+`GET https://gameruncher.com/v1/theme/lists/{hash}`
 
 ### RESPONSE
 
