@@ -629,7 +629,7 @@ Remember — a happy kitten is an authenticated kitten!
 <p>Example Request</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  <span class="s1">'https://gameruncher.com/v1/theme/lists?hash=apple'</span> <span class="se">\</span>
+  <span class="s1">'https://gameruncher.com/v1/theme/lists/{hash}'</span> <span class="se">\</span>
   -H <span class="s1">'content-type: application/json'</span>
 </code></pre>
 <blockquote>
@@ -688,7 +688,7 @@ Remember — a happy kitten is an authenticated kitten!
 </span></code></pre>
 <p>예약 앱 메인 페이지에 들어가는 리스트 정보를 받아옵니다.</p>
 <h3 id='endpoint-6'>ENDPOINT</h3>
-<p><code>GET https://gameruncher.com/v1/theme/lists</code></p>
+<p><code>GET https://gameruncher.com/v1/theme/lists/{hash}</code></p>
 <h3 id='response-6'>RESPONSE</h3>
 <table><thead>
 <tr>
