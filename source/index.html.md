@@ -80,7 +80,7 @@ Remember — a happy kitten is an authenticated kitten!
 > Example Request
 
 ```shell
-curl "https://gameruncher.com/v1/auth/duplicateIdentityCheck"
+curl "https://gameruncher.com/v1/auth/SighUpEmailValidation"
   -H "content-Type: application/json"
   -d '{
       "email":"hi_im_groot@naver.com",
@@ -104,7 +104,7 @@ curl "https://gameruncher.com/v1/auth/duplicateIdentityCheck"
 
 ### ENDPOINT
 
-`POST https://gameruncher.com/v1/auth/duplicateIdentityCheck`
+`POST https://gameruncher.com/v1/auth/SighUpEmailValidation`
 
 ### PARAMETERS
 
@@ -128,7 +128,7 @@ msg | 응답이 성공이 아닌 경우 설명 메세지
 > Example Request
 
 ```shell
-curl "https://gameruncher.com/v1/auth/duplicateNicknameCheck"
+curl "https://gameruncher.com/v1/auth/SighUpNicknameValidation"
   -H "content-Type: application/json"
   -d '{
       "nickanme":"아임그루트",
@@ -152,7 +152,7 @@ curl "https://gameruncher.com/v1/auth/duplicateNicknameCheck"
 
 ### ENDPOINT
 
-`POST https://gameruncher.com/v1/auth/duplicateNicknameCheck`
+`POST https://gameruncher.com/v1/auth/SighUpNicknameValidation`
 
 ### PARAMETERS
 
@@ -176,7 +176,7 @@ msg | 응답이 성공이 아닌 경우 설명 메세지
 > Example Request
 
 ```shell
-curl "https://gameruncher.com/v1/auth/duplicatePhoneCheck"
+curl "https://gameruncher.com/v1/auth/SighUpPhoneValidation"
   -H "content-Type: application/json"
   -d '{
       "phone":"010-0000-0000",
@@ -200,7 +200,7 @@ curl "https://gameruncher.com/v1/auth/duplicatePhoneCheck"
 
 ### ENDPOINT
 
-`POST https://gameruncher.com/v1/auth/duplicatePhoneCheck`
+`POST https://gameruncher.com/v1/auth/SighUpPhoneValidation`
 
 ### PARAMETERS
 
@@ -290,59 +290,75 @@ msg | 응답이 성공이 아닌 경우 설명 메세지 ( 여러 입력값에 �
 
 ```shell
 curl -X GET \
-  'https://gameruncher.com/v1/theme' \
+  'https://gameruncher.com/v1/theme/lists?hash=apple' \
   -H 'content-type: application/json'
 ```
 
 > Example Response
 
 ```json
-  {
-    "code": -1,
-    "msg": [
-        { "id":"1",
-          "thumbnail_img":"https://gameruncher.com/assets/thumbnail_img/money_bag_run_away.jpg",
-          "title":"돈가방을 갖고 튀어라!",
-          "description":"진짜 돈가방은 어디에",
-          "date":"2018-06-20",
-          "time":"11:00~13:00",
-          "level":"high",
-          "category":"로맨스|스릴러",
-          "tags":"청담동|키워드",
+{
+    "code": 0,
+    "themes": [
+        {
+            "id": "1",
+            "thumbnail": "https://gameruncher.com/thumbnail/ready_player_one.jpg",
+            "title": "돈가방을 갖고 튀어라!",
+            "description": "진짜 돈가방은 어디에",
+            "date": "2018-06-20",
+            "time": "11:00~13:00",
+            "level": "high",
+            "category": "로맨스|스릴러",
+            "tags": "망원동|키워드"
         },
-        { "id":"2",
-          "thumbnail_img":"https://gameruncher.com/assets/thumbnail_img/money_bag_run_away.jpg",
-          "title":"돈가방을 갖고 튀어라!",
-          "description":"진짜 돈가방은 어디에",
-          "date":"2018-06-20",
-          "time":"11:00~13:00",
-          "level":"low",
-          "category":"로맨스|스릴러",
-          "tags":"청담동|키워드",
+        {
+            "id": "2",
+            "thumbnail": "https://gameruncher.com/thumbnail/ready_player_one.jpg",
+            "title": "돈가방을 갖고 튀어라!",
+            "description": "진짜 돈가방은 어디에",
+            "date": "2018-06-20",
+            "time": "11:00~13:00",
+            "level": "high",
+            "category": "로맨스|스릴러",
+            "tags": "청담동|키워드"
         },
-        { "id":"3",
-          "thumbnail_img":"https://gameruncher.com/assets/thumbnail_img/money_bag_run_away.jpg",
-          "title":"돈가방을 갖고 튀어라!",
-          "description":"진짜 돈가방은 어디에",
-          "date":"2018-06-20",
-          "time":"11:00~13:00",
-          "level":"very high",
-          "category":"로맨스|스릴러",
-          "tags":"청담동|키워드",
+        {
+            "id": "3",
+            "thumbnail": "https://gameruncher.com/thumbnail/ready_player_one.jpg",
+            "title": "돈가방을 갖고 튀어라!",
+            "description": "진짜 돈가방은 어디에",
+            "date": "2018-06-20",
+            "time": "11:00~13:00",
+            "level": "high",
+            "category": "로맨스|스릴러",
+            "tags": "청담동|키워드"
+        },
+        {
+            "id": "4",
+            "thumbnail": "https://gameruncher.com/thumbnail/ready_player_one.jpg",
+            "title": "돈가방을 갖고 튀어라!",
+            "description": "진짜 돈가방은 어디에",
+            "date": "2018-06-20",
+            "time": "11:00~13:00",
+            "level": "high",
+            "category": "로맨스|스릴러",
+            "tags": "청담동|키워드"
         }
     ],
-  }
+    "hash": "apple"
+}
 ```
 
 예약 앱 메인 페이지에 들어가는 리스트 정보를 받아옵니다.
 
 ### ENDPOINT
 
-`GET https://gameruncher.com/v1/theme`
+`GET https://gameruncher.com/v1/theme/lists`
 
 ### RESPONSE
 
 Code | Description
 --------- | -------
-code | 응답코드 <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
-msg | 응답이 성공이 아닌 경우 설명 메세지 ( 여러 입력값에 대해 묶음으로 리턴됩니다. example response 참조 )
+code | 응답코드 <span style="color:#2cc200">**1 캐시**</span> <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
+lists | 테마 리스트에 대한 정보를 제공합니다.
+hash | lists를 해쉬화한 값 입니다.
