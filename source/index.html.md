@@ -305,20 +305,20 @@ curl -X GET \
             "thumbnail": "https://gameruncher.com/thumbnail/ready_player_one.jpg",
             "title": "돈가방을 갖고 튀어라!",
             "description": "진짜 돈가방은 어디에",
-            "date": "2018-06-20",
-            "time": "11:00~13:00",
-            "level": "high",
+            "price": 0,
+            "time": "(1회, 3시간)",
+            "level": "보통",
             "category": "로맨스|스릴러",
-            "tags": "망원동|키워드"
+            "tags": "서울|망원동"
         },
         {
             "id": "2",
             "thumbnail": "https://gameruncher.com/thumbnail/ready_player_one.jpg",
             "title": "돈가방을 갖고 튀어라!",
             "description": "진짜 돈가방은 어디에",
-            "date": "2018-06-20",
-            "time": "11:00~13:00",
-            "level": "high",
+            "price": 5000,
+            "time": "(1회, 3시간)",
+            "level": "어려움",
             "category": "로맨스|스릴러",
             "tags": "청담동|키워드"
         },
@@ -327,25 +327,14 @@ curl -X GET \
             "thumbnail": "https://gameruncher.com/thumbnail/ready_player_one.jpg",
             "title": "돈가방을 갖고 튀어라!",
             "description": "진짜 돈가방은 어디에",
-            "date": "2018-06-20",
-            "time": "11:00~13:00",
-            "level": "high",
-            "category": "로맨스|스릴러",
-            "tags": "청담동|키워드"
-        },
-        {
-            "id": "4",
-            "thumbnail": "https://gameruncher.com/thumbnail/ready_player_one.jpg",
-            "title": "돈가방을 갖고 튀어라!",
-            "description": "진짜 돈가방은 어디에",
-            "date": "2018-06-20",
-            "time": "11:00~13:00",
-            "level": "high",
+            "price": 11000,
+            "time": "(1회, 3시간)",
+            "level": "쉬움",
             "category": "로맨스|스릴러",
             "tags": "청담동|키워드"
         }
     ],
-    "hash": "apple"
+    "hash": "asdfasdfasdfasdf"
 }
 ```
 
