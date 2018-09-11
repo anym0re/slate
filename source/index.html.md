@@ -40,7 +40,7 @@ curl "https://gameruncher.com/v1/auth/login"
 ```json
   {
     "code": -1,
-    "msg": "아이디와 비밀번호를 확인해주세요.",
+    "msg": "아이디와 비밀번호를 확인해주세요."
   }
 ```
 
@@ -246,7 +246,7 @@ curl "https://gameruncher.com/v1/auth/join"
         { "name":"email", "msg":"아이디를 입력해주세요." },
         { "name":"password", "msg":"비밀번호를 입력해주세요."},
         { "name":"gender", "msg":"성별을 선택해주세요." }
-    ],
+    ]
   }
 ```
 
@@ -284,6 +284,302 @@ Code | Description
 code | 응답코드 <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
 msg | 응답이 성공이 아닌 경우 설명 메세지 ( 여러 입력값에 대해 묶음으로 리턴됩니다. example response 참조 )
 
+
+## 아이디 찾기
+
+> Example Request
+
+```shell
+curl "https://gameruncher.com/v1/auth/findIdentity"
+  -H "content-Type: application/json"
+  -d '{
+      "name":"홍길동",
+      "birth":"1997-11-26",
+      "phone":"010-0000-0000",
+      }'
+```
+
+> 실패 Example Response
+
+```json
+  {
+    "code": -1,
+    // 1번
+    "msg": {
+        "name or birth or phone": [
+            "일치하는 회원 정보가 없습니다."
+        ]
+    },
+    // 2번 편하신 방법으로 알려주세요.
+     "msg": "일치하는 회원 정보가 없습니다."
+  }
+```
+
+> 성공 Example Response
+
+```json
+  {
+      "code": 0,
+      "return": "example@gameruncher.com"
+  }
+```
+
+입력받은 값으로 일치하는 아이디를 리턴합니다.
+
+### ENDPOINT
+
+`POST https://gameruncher.com/v1/auth/findIdentity`
+
+### PARAMETERS
+
+Parameter | Default | DataType | Description
+--------- | ------- | -------- | -----------
+name | <span style="color:#c25300">**필수**</span>| 2~16자 한글,영어,숫자 | 회원 닉네임
+birth | <span style="color:#c25300">**필수**</span>| <span style="color:#c25300">**확정되지않음**</span> | 회원 생년월일
+phone | <span style="color:#c25300">**필수**</span>| 13자 xxx-xxxx-xxxx | 회원 휴대폰 번호
+
+### RESPONSE
+
+Code | Description
+--------- | -------
+code | 응답코드 <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
+msg | 응답이 성공이 아닌 경우 설명 메세지 
+
+<aside class="notice">
+아직 확정된 API가 아닙니다.
+</aside>
+
+
+## 비밀번호 찾기 1
+
+> Example Request
+
+```shell
+curl "https://gameruncher.com/v1/auth/findPasswordStepOne"
+  -H "content-Type: application/json"
+  -d '{
+      "email":"example@gameruncher.com",
+      "name":"홍길동",
+      "phone":"010-0000-0000",
+      }'
+```
+
+> 실패 Example Response
+
+```json
+  {
+    "code": -1,
+    // 1번
+    "msg": {
+        "email or name or phone": [
+            "일치하는 회원 정보가 없습니다."
+        ]
+    },
+    // 2번 편하신 방법으로 알려주세요.
+     "msg": "일치하는 회원 정보가 없습니다."
+  }
+```
+
+> 성공 Example Response
+
+```json
+  {
+      "code": 0
+  }
+```
+
+입력받은 값과 일치하는 계정이 있는지 확인합니다.
+
+### ENDPOINT
+
+`POST https://gameruncher.com/v1/auth/findPasswordStepOne`
+
+### PARAMETERS
+
+Parameter | Default | DataType | Description
+--------- | ------- | -------- | -----------
+email | <span style="color:#c25300">**필수**</span>| Email 4~32자 소문자,대문자,숫자,@,. | 회원 이메일
+name | <span style="color:#c25300">**필수**</span>| 2~16자 한글,영어,숫자 | 회원 닉네임
+phone | <span style="color:#c25300">**필수**</span>| 13자 xxx-xxxx-xxxx | 회원 휴대폰 번호
+
+### RESPONSE
+
+Code | Description
+--------- | -------
+code | 응답코드 <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
+msg | 응답이 성공이 아닌 경우 설명 메세지 
+
+<aside class="notice">
+아직 확정된 API가 아닙니다.
+</aside>
+
+## 비밀번호 찾기 2
+
+> Example Request
+
+```shell
+curl "https://gameruncher.com/v1/auth/findPasswordStepTwo"
+  -H "content-Type: application/json"
+  -d '{
+      "phone":"010-0000-0000"
+      }'
+```
+
+> 실패 Example Response
+
+```json
+  {
+    "code": -1,
+    "msg": {
+        "phone": [
+            "올바른 형식으로 입력해주세요."
+        ]
+    }
+  }
+```
+
+> 성공 Example Response
+
+```json
+  {
+      "code": 0
+  }
+```
+
+비밀번호 찾기 1에 이용된 전화번호로 인증번호를 전송합니다.
+
+### ENDPOINT
+
+`POST https://gameruncher.com/v1/auth/findPasswordStepTwo`
+
+### PARAMETERS
+
+Parameter | Default | DataType | Description
+--------- | ------- | -------- | -----------
+phone | <span style="color:#c25300">**필수**</span>| 13자 xxx-xxxx-xxxx | 회원 휴대폰 번호
+
+### RESPONSE
+
+Code | Description
+--------- | -------
+code | 응답코드 <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
+msg | 응답이 성공이 아닌 경우 설명 메세지 
+
+<aside class="notice">
+아직 확정된 API가 아닙니다.
+</aside>
+
+## 비밀번호 찾기 3
+
+> Example Request
+
+```shell
+curl "https://gameruncher.com/v1/auth/findPasswordStepThree"
+  -H "content-Type: application/json"
+  -d '{
+      "code":"147329"
+      }'
+```
+
+> 실패 Example Response
+
+```json
+  {
+    "code": -1,
+    "msg": "일치하는 코드가 없습니다."
+  }
+```
+
+> 성공 Example Response
+
+```json
+  {
+      "code": 0
+  }
+```
+
+비밀번호 찾기 2에서 요청한 인증번호가 일치하는지 확인합니다.
+
+### ENDPOINT
+
+`POST https://gameruncher.com/v1/auth/findPasswordStepThree`
+
+### PARAMETERS
+
+Parameter | Default | DataType | Description
+--------- | ------- | -------- | -----------
+code | <span style="color:#c25300">**필수**</span>| 6자 숫자 | 회원 휴대폰 인증번호
+
+### RESPONSE
+
+Code | Description
+--------- | -------
+code | 응답코드 <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
+msg | 응답이 성공이 아닌 경우 설명 메세지 
+
+<aside class="notice">
+아직 확정된 API가 아닙니다.
+</aside>
+
+
+## 비밀번호 찾기 4
+
+> Example Request
+
+```shell
+curl "https://gameruncher.com/v1/auth/findPasswordStepFour"
+  -H "content-Type: application/json"
+  -d '{
+      "email":"example@naver.com"
+      "passowrd":"weareawesome!"
+      }'
+```
+
+> 실패 Example Response
+
+```json
+  {
+    "code": -1,
+    "msg": {
+          "passowrd": [
+                        "올바른 형식으로 입력해주세요."
+              ]
+    }
+  }
+```
+
+> 성공 Example Response
+
+```json
+  {
+      "code": 0
+  }
+```
+
+비밀번호를 변경합니다.
+
+### ENDPOINT
+
+`POST https://gameruncher.com/v1/auth/findPasswordStepFour`
+
+### PARAMETERS
+
+Parameter | Default | DataType | Description
+--------- | ------- | -------- | -----------
+email | <span style="color:#c25300">**필수**</span>| Email 4~32자 소문자,대문자,숫자,@,. | 회원 이메일
+password | <span style="color:#c25300">**필수**</span>| String 4~32자| 회원 비밀번호
+
+### RESPONSE
+
+Code | Description
+--------- | -------
+code | 응답코드 <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
+msg | 응답이 성공이 아닌 경우 설명 메세지 
+
+<aside class="notice">
+아직 확정된 API가 아닙니다.
+</aside>
+
 ## 테마 리스트 얻기
 
 > Example Request
@@ -299,7 +595,7 @@ curl -X GET \
 ```json
 {
     "code": 0,
-    "themes": [
+    "lists": [
         {
             "id": "1",
             "thumbnail": "https://gameruncher.com/thumbnail/ready_player_one.jpg",
