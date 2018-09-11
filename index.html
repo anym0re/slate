@@ -236,6 +236,21 @@
                     <a href="#a41c324eb8" class="toc-h2 toc-link" data-title="">힙한 회원가입 ! (둠칫)</a>
                   </li>
                   <li>
+                    <a href="#16c091f93b" class="toc-h2 toc-link" data-title="">아이디 찾기</a>
+                  </li>
+                  <li>
+                    <a href="#1" class="toc-h2 toc-link" data-title="1">비밀번호 찾기 1</a>
+                  </li>
+                  <li>
+                    <a href="#2" class="toc-h2 toc-link" data-title="2">비밀번호 찾기 2</a>
+                  </li>
+                  <li>
+                    <a href="#3" class="toc-h2 toc-link" data-title="3">비밀번호 찾기 3</a>
+                  </li>
+                  <li>
+                    <a href="#4" class="toc-h2 toc-link" data-title="4">비밀번호 찾기 4</a>
+                  </li>
+                  <li>
                     <a href="#21e3c6193e" class="toc-h2 toc-link" data-title="">테마 리스트 얻기</a>
                   </li>
               </ul>
@@ -274,7 +289,7 @@
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"아이디와 비밀번호를 확인해주세요."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"아이디와 비밀번호를 확인해주세요."</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>입력받은 회원 정보를 기반으로 로그인을 시도합니다.</p>
@@ -542,7 +557,7 @@ Remember — a happy kitten is an authenticated kitten!
         </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w"> </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"아이디를 입력해주세요."</span><span class="w"> </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"password"</span><span class="p">,</span><span class="w"> </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"비밀번호를 입력해주세요."</span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"gender"</span><span class="p">,</span><span class="w"> </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"성별을 선택해주세요."</span><span class="w"> </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><del>드디어</del> 입력받은 회원정보들로 회원가입을 시도합니다.</p>
@@ -624,6 +639,384 @@ Remember — a happy kitten is an authenticated kitten!
 <td>응답이 성공이 아닌 경우 설명 메세지 ( 여러 입력값에 대해 묶음으로 리턴됩니다. example response 참조 )</td>
 </tr>
 </tbody></table>
+<h2 id='16c091f93b'>아이디 찾기</h2>
+<blockquote>
+<p>Example Request</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gameruncher.com/v1/auth/findIdentity"</span>
+  -H <span class="s2">"content-Type: application/json"</span>
+  -d <span class="s1">'{
+      "name":"홍길동",
+      "birth":"1997-11-26",
+      "phone":"010-0000-0000",
+      }'</span>
+</code></pre>
+<blockquote>
+<p>실패 Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="mi">1</span><span class="err">번</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name or birth or phone"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"일치하는 회원 정보가 없습니다."</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="mi">2</span><span class="err">번</span><span class="w"> </span><span class="err">편하신</span><span class="w"> </span><span class="err">방법으로</span><span class="w"> </span><span class="err">알려주세요.</span><span class="w">
+     </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"일치하는 회원 정보가 없습니다."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>성공 Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"return"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@gameruncher.com"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>입력받은 값으로 일치하는 아이디를 리턴합니다.</p>
+<h3 id='endpoint-6'>ENDPOINT</h3>
+<p><code>POST https://gameruncher.com/v1/auth/findIdentity</code></p>
+<h3 id='parameters-6'>PARAMETERS</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>DataType</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>2~16자 한글,영어,숫자</td>
+<td>회원 닉네임</td>
+</tr>
+<tr>
+<td>birth</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td><span style="color:#c25300"><strong>확정되지않음</strong></span></td>
+<td>회원 생년월일</td>
+</tr>
+<tr>
+<td>phone</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>13자 xxx-xxxx-xxxx</td>
+<td>회원 휴대폰 번호</td>
+</tr>
+</tbody></table>
+<h3 id='response-6'>RESPONSE</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>응답코드 <span style="color:#2cc200"><strong>0 성공</strong></span> <span style="color:#c25300"><strong>-1 실패</strong></span></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>응답이 성공이 아닌 경우 설명 메세지</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+아직 확정된 API가 아닙니다.
+</aside>
+<h2 id='1'>비밀번호 찾기 1</h2>
+<blockquote>
+<p>Example Request</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gameruncher.com/v1/auth/findPasswordStepOne"</span>
+  -H <span class="s2">"content-Type: application/json"</span>
+  -d <span class="s1">'{
+      "email":"example@gameruncher.com",
+      "name":"홍길동",
+      "phone":"010-0000-0000",
+      }'</span>
+</code></pre>
+<blockquote>
+<p>실패 Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="mi">1</span><span class="err">번</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"email or name or phone"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"일치하는 회원 정보가 없습니다."</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="mi">2</span><span class="err">번</span><span class="w"> </span><span class="err">편하신</span><span class="w"> </span><span class="err">방법으로</span><span class="w"> </span><span class="err">알려주세요.</span><span class="w">
+     </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"일치하는 회원 정보가 없습니다."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>성공 Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>입력받은 값과 일치하는 계정이 있는지 확인합니다.</p>
+<h3 id='endpoint-7'>ENDPOINT</h3>
+<p><code>POST https://gameruncher.com/v1/auth/findPasswordStepOne</code></p>
+<h3 id='parameters-7'>PARAMETERS</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>DataType</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>Email 4~32자 소문자,대문자,숫자,@,.</td>
+<td>회원 이메일</td>
+</tr>
+<tr>
+<td>name</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>2~16자 한글,영어,숫자</td>
+<td>회원 닉네임</td>
+</tr>
+<tr>
+<td>phone</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>13자 xxx-xxxx-xxxx</td>
+<td>회원 휴대폰 번호</td>
+</tr>
+</tbody></table>
+<h3 id='response-7'>RESPONSE</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>응답코드 <span style="color:#2cc200"><strong>0 성공</strong></span> <span style="color:#c25300"><strong>-1 실패</strong></span></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>응답이 성공이 아닌 경우 설명 메세지</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+아직 확정된 API가 아닙니다.
+</aside>
+<h2 id='2'>비밀번호 찾기 2</h2>
+<blockquote>
+<p>Example Request</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gameruncher.com/v1/auth/findPasswordStepTwo"</span>
+  -H <span class="s2">"content-Type: application/json"</span>
+  -d <span class="s1">'{
+      "phone":"010-0000-0000"
+      }'</span>
+</code></pre>
+<blockquote>
+<p>실패 Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"올바른 형식으로 입력해주세요."</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>성공 Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>비밀번호 찾기 1에 이용된 전화번호로 인증번호를 전송합니다.</p>
+<h3 id='endpoint-8'>ENDPOINT</h3>
+<p><code>POST https://gameruncher.com/v1/auth/findPasswordStepTwo</code></p>
+<h3 id='parameters-8'>PARAMETERS</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>DataType</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>phone</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>13자 xxx-xxxx-xxxx</td>
+<td>회원 휴대폰 번호</td>
+</tr>
+</tbody></table>
+<h3 id='response-8'>RESPONSE</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>응답코드 <span style="color:#2cc200"><strong>0 성공</strong></span> <span style="color:#c25300"><strong>-1 실패</strong></span></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>응답이 성공이 아닌 경우 설명 메세지</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+아직 확정된 API가 아닙니다.
+</aside>
+<h2 id='3'>비밀번호 찾기 3</h2>
+<blockquote>
+<p>Example Request</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gameruncher.com/v1/auth/findPasswordStepThree"</span>
+  -H <span class="s2">"content-Type: application/json"</span>
+  -d <span class="s1">'{
+      "code":"147329"
+      }'</span>
+</code></pre>
+<blockquote>
+<p>실패 Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"일치하는 코드가 없습니다."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>성공 Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>비밀번호 찾기 2에서 요청한 인증번호가 일치하는지 확인합니다.</p>
+<h3 id='endpoint-9'>ENDPOINT</h3>
+<p><code>POST https://gameruncher.com/v1/auth/findPasswordStepThree</code></p>
+<h3 id='parameters-9'>PARAMETERS</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>DataType</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>6자 숫자</td>
+<td>회원 휴대폰 인증번호</td>
+</tr>
+</tbody></table>
+<h3 id='response-9'>RESPONSE</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>응답코드 <span style="color:#2cc200"><strong>0 성공</strong></span> <span style="color:#c25300"><strong>-1 실패</strong></span></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>응답이 성공이 아닌 경우 설명 메세지</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+아직 확정된 API가 아닙니다.
+</aside>
+<h2 id='4'>비밀번호 찾기 4</h2>
+<blockquote>
+<p>Example Request</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://gameruncher.com/v1/auth/findPasswordStepFour"</span>
+  -H <span class="s2">"content-Type: application/json"</span>
+  -d <span class="s1">'{
+      "email":"example@naver.com"
+      "passowrd":"weareawesome!"
+      }'</span>
+</code></pre>
+<blockquote>
+<p>실패 Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"passowrd"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"올바른 형식으로 입력해주세요."</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>성공 Example Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>비밀번호를 변경합니다.</p>
+<h3 id='endpoint-10'>ENDPOINT</h3>
+<p><code>POST https://gameruncher.com/v1/auth/findPasswordStepFour</code></p>
+<h3 id='parameters-10'>PARAMETERS</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>DataType</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>Email 4~32자 소문자,대문자,숫자,@,.</td>
+<td>회원 이메일</td>
+</tr>
+<tr>
+<td>password</td>
+<td><span style="color:#c25300"><strong>필수</strong></span></td>
+<td>String 4~32자</td>
+<td>회원 비밀번호</td>
+</tr>
+</tbody></table>
+<h3 id='response-10'>RESPONSE</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>응답코드 <span style="color:#2cc200"><strong>0 성공</strong></span> <span style="color:#c25300"><strong>-1 실패</strong></span></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>응답이 성공이 아닌 경우 설명 메세지</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+아직 확정된 API가 아닙니다.
+</aside>
 <h2 id='21e3c6193e'>테마 리스트 얻기</h2>
 <blockquote>
 <p>Example Request</p>
@@ -637,7 +1030,7 @@ Remember — a happy kitten is an authenticated kitten!
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"themes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://gameruncher.com/thumbnail/ready_player_one.jpg"</span><span class="p">,</span><span class="w">
@@ -676,9 +1069,9 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>예약 앱 메인 페이지에 들어가는 리스트 정보를 받아옵니다.</p>
-<h3 id='endpoint-6'>ENDPOINT</h3>
+<h3 id='endpoint-11'>ENDPOINT</h3>
 <p><code>GET https://gameruncher.com/v1/theme/lists/{hash}</code></p>
-<h3 id='response-6'>RESPONSE</h3>
+<h3 id='response-11'>RESPONSE</h3>
 <table><thead>
 <tr>
 <th>Code</th>
