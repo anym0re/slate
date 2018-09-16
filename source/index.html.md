@@ -80,7 +80,7 @@ Remember — a happy kitten is an authenticated kitten!
 > Example Request
 
 ```shell
-curl "https://gameruncher.com/v1/auth/SighUpEmailValidation"
+curl "https://gameruncher.com/v1/auth/duplicateIdentityCheck"
   -H "content-Type: application/json"
   -d '{
       "email":"hi_im_groot@naver.com",
@@ -104,7 +104,7 @@ curl "https://gameruncher.com/v1/auth/SighUpEmailValidation"
 
 ### ENDPOINT
 
-`POST https://gameruncher.com/v1/auth/SighUpEmailValidation`
+`POST https://gameruncher.com/v1/auth/duplicateIdentityCheck`
 
 ### PARAMETERS
 
@@ -128,7 +128,7 @@ msg | 응답이 성공이 아닌 경우 설명 메세지
 > Example Request
 
 ```shell
-curl "https://gameruncher.com/v1/auth/SighUpNicknameValidation"
+curl "https://gameruncher.com/v1/auth/duplicateNicknameCheck"
   -H "content-Type: application/json"
   -d '{
       "nickanme":"아임그루트",
@@ -152,7 +152,7 @@ curl "https://gameruncher.com/v1/auth/SighUpNicknameValidation"
 
 ### ENDPOINT
 
-`POST https://gameruncher.com/v1/auth/SighUpNicknameValidation`
+`POST https://gameruncher.com/v1/auth/duplicateNicknameCheck`
 
 ### PARAMETERS
 
@@ -176,7 +176,7 @@ msg | 응답이 성공이 아닌 경우 설명 메세지
 > Example Request
 
 ```shell
-curl "https://gameruncher.com/v1/auth/SighUpPhoneValidation"
+curl "https://gameruncher.com/v1/auth/duplicatePhoneCheck"
   -H "content-Type: application/json"
   -d '{
       "phone":"010-0000-0000",
@@ -200,13 +200,111 @@ curl "https://gameruncher.com/v1/auth/SighUpPhoneValidation"
 
 ### ENDPOINT
 
-`POST https://gameruncher.com/v1/auth/SighUpPhoneValidation`
+`POST https://gameruncher.com/v1/auth/duplicatePhoneCheck`
 
 ### PARAMETERS
 
 Parameter | Default | DataType | Description
 --------- | ------- | -------- | -----------
 phone | <span style="color:#c25300">**필수**</span>| 13자 xxx-xxxx-xxxx | 회원 휴대폰 번호
+
+### RESPONSE
+
+Code | Description
+--------- | -------
+code | 응답코드 <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
+msg | 응답이 성공이 아닌 경우 설명 메세지 
+
+<aside class="notice">
+올바른 휴대폰 번호인지 여부의 에러도 출력함 code가 0이 아니면 msg내용을 그대로 출력
+</aside>
+
+## 휴대폰번호 인증 요청
+
+> Example Request
+
+```shell
+curl "https://gameruncher.com/v1/auth/SignUpPhoneAuthRequest"
+  -H "content-Type: application/json"
+  -d '{
+      "phone":"010-0000-0000",
+      }'
+```
+
+> Example Response
+
+```json
+  {
+    "code": -1,
+    "msg": {
+        "phone": [
+            "이미 가입된 휴대폰 번호입니다."
+        ]
+    }
+  }
+```
+
+입력받은 휴대폰 번호로 인증번호를 전송합니다.
+
+### ENDPOINT
+
+`POST https://gameruncher.com/v1/auth/SignUpPhoneAuthRequest`
+
+### PARAMETERS
+
+Parameter | Default | DataType | Description
+--------- | ------- | -------- | -----------
+phone | <span style="color:#c25300">**필수**</span>| 13자 xxx-xxxx-xxxx | 회원 휴대폰 번호
+
+### RESPONSE
+
+Code | Description
+--------- | -------
+code | 응답코드 <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
+msg | 응답이 성공이 아닌 경우 설명 메세지 
+
+<aside class="notice">
+올바른 휴대폰 번호인지 여부의 에러도 출력함 code가 0이 아니면 msg내용을 그대로 출력
+</aside>
+
+## 휴대폰번호 인증 확인
+
+> Example Request
+
+```shell
+curl "https://gameruncher.com/v1/auth/SignUpPhoneAuthCheck"
+  -H "content-Type: application/json"
+  -d '{
+      "phone":"010-0000-0000",
+      "code":"111111",
+      }'
+```
+
+> Example Response
+
+```json
+  {
+    "code": -1,
+    "msg": {
+         "code": [
+            "이미 가입된 휴대폰 번호입니다."
+        ]
+    }
+  }
+```
+
+입력받은 휴대폰 번호로 발송된 인증번호가 일치하는지 확인합니다.
+
+### ENDPOINT
+
+`POST https://gameruncher.com/v1/auth/SignUpPhoneAuthCheck`
+
+### PARAMETERS
+
+Parameter | Default | DataType | Description
+--------- | ------- | -------- | -----------
+phone | <span style="color:#c25300">**필수**</span>| 13자 xxx-xxxx-xxxx | 회원 휴대폰 번호
+code | <span style="color:#c25300">**필수**</span>| 6자 숫자 | 인증번호
 
 ### RESPONSE
 
@@ -639,6 +737,53 @@ curl -X GET \
 ### ENDPOINT
 
 `GET https://gameruncher.com/v1/theme/lists/{hash}`
+
+### RESPONSE
+
+Code | Description
+--------- | -------
+code | 응답코드 <span style="color:#2cc200">**1 캐시**</span> <span style="color:#2cc200">**0 성공**</span> <span style="color:#c25300">**-1 실패**</span>
+lists | 테마 리스트에 대한 정보를 제공합니다. <span style="color:#c25300">**응답 코드가 1일때는 리턴하지 않습니다.**</span>
+hash | lists를 해쉬화한 값 입니다.
+
+
+## 테마 세부정보 가져오기
+
+> Example Request
+
+```shell
+curl -X GET \
+  'https://gameruncher.com/v1/theme/detail/{themeId}' \
+  -H 'content-type: application/json'
+```
+
+> Example Response
+
+```json
+{
+    "code": 0,
+    "lists": {
+            "themeId": "1",
+            "movie": "https://gameruncher.com/thumbnail/ready_player_one.jpg",
+            "title": "돈가방을 갖고 튀어라!",
+            "description_long": "긴 내용",
+            "location_text": "긴 내용",
+            "location_geo": "긴 내용",
+            "thumbnail": "https://gameruncher.com/thumbnail/ready_player_one.jpg",
+            "price": 0,
+            "time": "(1회, 3시간)",
+            "level": "보통",
+            "category": "로맨스|스릴러",
+            "tags": "서울|망원동"
+        }
+}
+```
+
+테마 리스트 얻기에서 받아온 테마 id를 기준으로 호출시 상세 정보를 리턴합니다.
+
+### ENDPOINT
+
+`GET https://gameruncher.com/v1/theme/detail/{themeId}`
 
 ### RESPONSE
 
